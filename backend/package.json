@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development node node_modules/nodemon/bin/nodemon --ignore \"*.json\" app.js",
+    "setup": "npm install --production",
+    "setup:dev": "npm install --save-dev",
+    "setup:ndev": "npm prune --production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fastify/formbody": "^9.0.1",
+    "bcryptjs": "^3.0.3",
+    "fastify": "^5.12.7",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.6",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
