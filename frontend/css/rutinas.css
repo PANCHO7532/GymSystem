@@ -1,0 +1,191 @@
+/* ================================================================
+   GymSystem — rutinas.css
+   Estilos específicos del módulo: rutinas
+   Requiere: base.css
+   ================================================================ */
+
+/* TOPBAR */
+
+    /* SIDEBAR */
+
+    /* MAIN */
+
+    /* STATS */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .mini-stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 16px; transition: border-color .2s; }
+    .mini-stat:hover { border-color: var(--accent); }
+    .mini-stat-icon { font-size: 24px; }
+    .mini-stat-val { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 28px; letter-spacing: 1px; }
+    .mini-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* FILTROS CHIPS */
+    .filtros-wrap { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filtro-chip { padding: 7px 16px; border-radius: 100px; border: 1px solid var(--border); cursor: pointer; font-size: 12px; font-weight: 500; transition: all .2s; background: var(--surface); color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .filtro-chip:hover { border-color: var(--muted); color: var(--text); }
+    .filtro-chip.active { background: rgba(232,255,71,.1); border-color: var(--accent); color: var(--accent); }
+    .filtro-chip .chip-count { font-size: 10px; opacity: .6; }
+
+    /* TOOLBAR */
+    .count-label { font-size: 13px; color: var(--muted); margin-left: auto; }
+
+    /* GRID RUTINAS */
+    .rutinas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+    .rutina-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: all .2s; animation: fadeUp .3s ease both; display: flex; flex-direction: column;
+    }
+    .rutina-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+    .rut-header {
+      padding: 20px 20px 16px;
+      background: linear-gradient(135deg, var(--surface2), var(--surface));
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .rut-nivel-badge {
+      position: absolute; top: 16px; right: 16px;
+      padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .nivel-principiante { background: rgba(71,255,212,.12); color: var(--accent2); border: 1px solid rgba(71,255,212,.25); }
+    .nivel-intermedio    { background: rgba(232,255,71,.12); color: var(--accent); border: 1px solid rgba(232,255,71,.25); }
+    .nivel-avanzado      { background: rgba(255,79,79,.12); color: var(--error); border: 1px solid rgba(255,79,79,.25); }
+
+    .rut-nombre { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 6px; padding-right: 80px; }
+    .rut-objetivo { font-size: 12px; color: var(--muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .rut-meta { display: flex; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+    .rut-meta-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    .rut-meta-item span:first-child { font-size: 14px; }
+    .rut-meta-item strong { color: var(--text); font-weight: 500; }
+
+    .rut-ejercicios-preview { padding: 14px 20px; flex: 1; }
+    .rut-ej-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 10px; }
+    .rut-ej-list { display: flex; flex-direction: column; gap: 6px; }
+    .rut-ej-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+    .rut-ej-num { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 14px; color: var(--accent); min-width: 20px; }
+    .rut-ej-name { color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rut-ej-detail { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .rut-ej-more { font-size: 11px; color: var(--muted); padding-top: 4px; }
+
+    .rut-actions { display: flex; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--border); }
+    .btn-sm { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 11px; transition: all .2s; color: var(--muted); font-family: 'Segoe UI', 'Arial', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+    .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-sm.danger:hover { border-color: var(--error); color: var(--error); }
+    .btn-sm.accent { border-color: rgba(232,255,71,.3); color: var(--accent); }
+    .btn-sm.accent:hover { background: rgba(232,255,71,.08); }
+
+    /* EMPTY */
+
+    /* MODAL RUTINA */
+    .modal-close { background: none; border: 1px solid var(--border); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; color: var(--muted); font-size: 16px; transition: all .2s; display: flex; align-items: center; justify-content: center; }
+    .modal-close:hover { border-color: var(--error); color: var(--error); }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 500; }
+    .field input, .field select, .field textarea { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px 14px; color: var(--text); font-family: 'Segoe UI', 'Arial', sans-serif; font-size: 14px; outline: none; transition: border-color .2s; width: 100%; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,255,71,.1); }
+    .field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+    .field select option { background: var(--surface); }
+    .fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Sección ejercicios del modal */
+    .ej-section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 500; }
+    .ej-agregar-row { display: flex; gap: 8px; align-items: flex-end; }
+    .ej-agregar-row .field { flex: 1; margin: 0; }
+    .ej-agregar-row select, .ej-agregar-row input { margin: 0; }
+    .btn-agregar-ej { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px 16px; color: var(--accent); font-family: 'Segoe UI', 'Arial', sans-serif; font-size: 13px; cursor: pointer; transition: all .2s; white-space: nowrap; height: 44px; display: flex; align-items: center; gap: 6px; }
+    .btn-agregar-ej:hover { border-color: var(--accent); background: rgba(232,255,71,.06); }
+
+    .ej-lista-modal { display: flex; flex-direction: column; gap: 6px; min-height: 40px; }
+    .ej-modal-item { display: flex; align-items: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; transition: border-color .2s; }
+    .ej-modal-item:hover { border-color: var(--border); }
+    .ej-modal-num { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 16px; color: var(--accent); min-width: 22px; }
+    .ej-modal-name { flex: 1; font-size: 13px; }
+    .ej-modal-series { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .btn-ej-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 14px; padding: 2px 6px; border-radius: 6px; transition: all .2s; line-height: 1; }
+    .btn-ej-remove:hover { color: var(--error); background: rgba(255,79,79,.1); }
+    .ej-empty-hint { font-size: 12px; color: var(--muted); text-align: center; padding: 16px; background: var(--bg); border: 1px dashed var(--border); border-radius: var(--radius); }
+
+    .btn-save { background: var(--accent); color: #000; border: none; border-radius: var(--radius); padding: 10px 24px; font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 17px; letter-spacing: 2px; cursor: pointer; transition: all .2s; }
+    .btn-save:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,255,71,.3); }
+    .btn-save:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* MODAL VER DETALLE */
+    .modal-wide { max-width: 720px; }
+    .detalle-header { padding: 28px; border-bottom: 1px solid var(--border); }
+    .detalle-nivel { display: inline-flex; padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .detalle-nombre { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 32px; letter-spacing: 2px; line-height: 1.1; margin-bottom: 8px; }
+    .detalle-objetivo { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .detalle-meta-row { display: flex; gap: 24px; padding: 18px 28px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .detalle-meta-item { display: flex; align-items: center; gap: 8px; }
+    .detalle-meta-icon { font-size: 18px; }
+    .detalle-meta-val { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 18px; }
+    .detalle-meta-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .detalle-body { padding: 28px; }
+    .detalle-section-title { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--accent); margin-bottom: 14px; }
+    .detalle-ej-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+    .detalle-ej-table thead th { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 14px 8px; text-align: left; font-weight: 500; }
+    .detalle-ej-row { background: var(--surface2); }
+    .detalle-ej-row td { padding: 12px 14px; font-size: 13px; }
+    .detalle-ej-row td:first-child { border-radius: 10px 0 0 10px; }
+    .detalle-ej-row td:last-child { border-radius: 0 10px 10px 0; }
+    .detalle-ej-idx { font-family: 'Impact', 'Arial Narrow', sans-serif; font-size: 16px; color: var(--accent); width: 32px; }
+    .detalle-ej-grupo-tag { font-size: 10px; color: var(--accent2); opacity: .8; }
+    .detalle-notas { margin-top: 20px; }
+    .detalle-notas p { font-size: 13px; color: var(--muted); line-height: 1.7; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+
+    /* TOAST */
+
+
+/* ── Responsive: Rutinas ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .stats-row    { grid-template-columns: repeat(2, 1fr); }
+  .rutinas-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .stats-row    { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .rutinas-grid { grid-template-columns: 1fr; }
+
+  /* Chips: scroll horizontal */
+  .filtros-wrap {
+    flex-wrap: nowrap; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .filtros-wrap::-webkit-scrollbar { display: none; }
+  .filtro-chip { white-space: nowrap; flex-shrink: 0; }
+
+  /* Cards compactas */
+  .rut-header  { padding: 16px 16px 12px; }
+  .rut-meta    { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
+  .rut-ejercicios-preview { padding: 12px 16px; }
+  .rut-actions { padding: 12px 16px; }
+
+  /* Modal wide full */
+  .modal-wide { max-width: 100%; }
+
+  /* Modal: fields en 1 columna, fila agregar apilada */
+  .fields-row { grid-template-columns: 1fr; gap: 12px; }
+  .ej-agregar-row { flex-direction: column; align-items: stretch; }
+  .btn-agregar-ej { width: 100%; justify-content: center; }
+
+  .detalle-header { padding: 20px; }
+  .detalle-body   { padding: 20px; }
+  .detalle-meta-row { gap: 14px; padding: 14px 20px; }
+  .count-label    { display: none; }
+}
+
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+
+  /* Badge nivel: sacar del position absolute */
+  .rut-nombre    { padding-right: 0; }
+  .rut-nivel-badge { position: static; margin-bottom: 8px; display: inline-flex; }
+
+  /* Tabla detalle: ocultar columna series */
+  .detalle-ej-table th:nth-child(3),
+  .detalle-ej-table td:nth-child(3) { display: none; }
+}
