@@ -135,3 +135,5 @@ package-lock.json
 private/
 # Ignore tests
 tests/
+# Ignore config.json for backend
+config.json
