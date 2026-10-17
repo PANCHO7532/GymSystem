@@ -4,7 +4,7 @@
  * No depende de auth.js (esta ES la pantalla de auth).
  */
 
-const API_BASE = 'https://localhost:7158';
+const API_BASE = 'http://localhost:7158';
   let rolSeleccionado = 'Admin';
 
   function selectRol(btn) {

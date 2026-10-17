@@ -108,7 +108,7 @@ Cambiar la URL en un solo lugar:
 
 ```js
 // js/auth.js
-const API_BASE = 'https://localhost:7158';
+const API_BASE = 'http://localhost:7158';
 ```
 
 ---

@@ -5,7 +5,7 @@
  */
 
 /* ── Configuración ───────────────────────────────────────────── */
-const API_BASE = 'https://localhost:7158';
+const API_BASE = 'http://localhost:7158';
 
 /* ── Auth guard ──────────────────────────────────────────────── */
 const token  = localStorage.getItem('token');
