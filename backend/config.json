@@ -1,0 +1,13 @@
+{
+    "server": {
+        "listenPort": 3000,
+        "listenHost": "::"
+    },
+    "database": {
+        "mysqlHost": "127.0.0.1",
+        "mysqlPort": 3306,
+        "mysqlUsername": "root",
+        "mysqlPassword": "",
+        "mysqlDatabaseName": "db1000"
+    }
+}
