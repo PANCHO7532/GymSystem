@@ -6,7 +6,7 @@
 
 | Item | Value |
 | --- | --- |
-| Base URL | `https://localhost:7158` (`API_BASE`, defined in `auth.js`; duplicated in `login.js`) |
+| Base URL | `http://localhost:7158` (`API_BASE`, defined in `auth.js`; duplicated in `login.js`) |
 | Backend style | ASP.NET Core Web API (inferred from port 7158, `err.title` ProblemDetails usage, and the Visual Studio hint in the login error) |
 | Auth | JWT Bearer token on every request except login |
 | Standard headers | `Authorization: Bearer <token>` and `Content-Type: application/json` (via `authHeaders()`) |

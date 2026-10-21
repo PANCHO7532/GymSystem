@@ -1,0 +1,170 @@
+@startuml GymSystem
+' GymSystem - schema as implied by the CURRENT frontend/API contract (no redesign).
+' Notation: PlantUML "entity" with IE (crow's foot) relationships.
+' * = NOT NULL   <<PK>> primary key   <<FK>> foreign key
+
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+
+entity Usuario {
+  * idUsuario : int <<PK>>
+  --
+  * email : nvarchar
+  * passwordHash : nvarchar
+  * rol : nvarchar
+}
+
+entity Socio {
+  * idSocio : int <<PK>>
+  --
+  * apellido : nvarchar
+  * nombre : nvarchar
+  * dni : nvarchar
+  telefono : nvarchar
+  email : nvarchar
+  direccion : nvarchar
+  fechaNacimiento : date
+  * fechaAlta : datetime
+  fotoUrl : nvarchar
+  * activo : bit
+}
+
+entity Plan {
+  * idPlan : int <<PK>>
+  --
+  * nombre : nvarchar
+  * precioMensual : decimal
+  * activo : bit
+}
+
+entity Membresia {
+  * idMembresia : int <<PK>>
+  --
+  * idSocio : int <<FK>>
+  * idPlan : int <<FK>>
+  * fechaInicio : date
+  * fechaVencimiento : date
+  * activo : bit
+}
+
+entity Pago {
+  * idPago : int <<PK>>
+  --
+  * idMembresia : int <<FK>>
+  * monto : decimal
+  * medioPago : nvarchar
+  * fechaPago : date
+  * periodoMes : varchar(2)
+  * periodoAnio : varchar(4)
+  * confirmado : bit
+  observaciones : nvarchar
+}
+
+entity Profesor {
+  * idProfesor : int <<PK>>
+  --
+  * nombre : nvarchar
+  * apellido : nvarchar
+  * activo : bit
+}
+
+entity TipoEntrenamiento {
+  * idTipoEntrenamiento : int <<PK>>
+  --
+  * nombre : nvarchar
+}
+
+entity Clase {
+  * idClase : int <<PK>>
+  --
+  * idTipoEntrenamiento : int <<FK>>
+  * idProfesor : int <<FK>>
+  * diaSemana : nvarchar
+  * horaInicio : time
+  * horaFin : time
+  * capacidadMax : int
+  * lugaresDisponible : int
+  * activo : bit
+}
+
+entity Asistencia {
+  * idAsistencia : int <<PK>>
+  --
+  * idSocio : int <<FK>>
+  * idTipoEntrenamiento : int <<FK>>
+  * fecha : date
+  * horaEntrada : time
+  horaSalida : time
+  * activo : bit
+}
+
+entity Ejercicio {
+  * idEjercicio : int <<PK>>
+  --
+  * nombre : nvarchar
+  * grupoMuscular : nvarchar
+  descripcion : nvarchar
+  videoUrl : nvarchar
+  * estado : bit
+}
+
+entity Rutina {
+  * idRutina : int <<PK>>
+  --
+  * idSocio : int <<FK>>
+  * idProfesor : int <<FK>>
+  * nombre : nvarchar
+  objetivo : nvarchar
+  * nivel : nvarchar
+  diasSemana : int
+  duracionMinutos : int
+  tipo : nvarchar
+  notas : nvarchar
+}
+
+entity RutinaEjercicio {
+  * idRutinaEjercicio : int <<PK>>
+  --
+  * idRutina : int <<FK>>
+  * idEjercicio : int <<FK>>
+  * orden : int
+  series : nvarchar
+  repeticiones : nvarchar
+  descansoSeg : int
+}
+
+Socio ||--o{ Membresia
+Plan ||--o{ Membresia
+Membresia ||--o{ Pago
+Socio ||--o{ Asistencia
+TipoEntrenamiento ||--o{ Asistencia
+TipoEntrenamiento ||--o{ Clase
+Profesor ||--o{ Clase
+Socio ||--o{ Rutina
+Profesor ||--o{ Rutina
+Rutina ||--o{ RutinaEjercicio
+Ejercicio ||--o{ RutinaEjercicio
+
+note right of Usuario
+  Not linked to any other table.
+  Login returns token / rol / email / expira;
+  token and expira are generated, not stored.
+end note
+
+note bottom of Pago
+  Status column name is unresolved in the frontend:
+  GET/PUT use "confirmado", POST sends "estado".
+  Modeled here as a single bit column.
+end note
+
+note bottom of Clase
+  lugaresDisponible is read/written directly
+  by the frontend (no enrollment table exists).
+end note
+
+note bottom of Asistencia
+  "duracion" is returned by the API but is
+  treated as derived (horaSalida - horaEntrada).
+end note
+@enduml
