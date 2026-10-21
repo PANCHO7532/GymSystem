@@ -13,6 +13,11 @@ for(let a = 0; a < routeList.length; a++) {
 function isDevelopment() {
     return process.env.NODE_ENV === "development";
 }
+fastify.register(require("@fastify/static"), { root: path.join(__dirname, '../frontend') });
+
+fastify.register(require("@fastify/cors"), {
+    origin: "*"
+});
 
 fastify.listen({port: configFile.listenPort, host: configFile.listenHost}, async(err, addr) => {
     if(err) { console.log(`[ERROR] ${err}`); process.exit(1); }
