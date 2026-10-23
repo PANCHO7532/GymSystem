@@ -27,3 +27,61 @@ for(let a = 0; a < modelFiles.length; a++) {
     if(modelFiles[a].split(".")[1] != "db") { continue; }
     require(path.join(__dirname, "models/", modelFiles[a]));
 }
+
+const {
+    socios,
+    planes,
+    membresias,
+    pagos,
+    profesores,
+    entrenamientos,
+    clases,
+    asistencias,
+    ejercicios,
+    rutinas,
+    rutinasejercicios
+} = sequelizeInstance.models;
+
+// socios 1 ── N membresias
+socios.hasMany(membresias, { foreignKey: { name: "idSocio", allowNull: false } });
+membresias.belongsTo(socios, { foreignKey: { name: "idSocio", allowNull: false } });
+
+// planes 1 ── N membresias
+planes.hasMany(membresias, { foreignKey: { name: "idPlan", allowNull: false } });
+membresias.belongsTo(planes, { foreignKey: { name: "idPlan", allowNull: false } });
+
+// membresias 1 ── N pagos
+membresias.hasMany(pagos, { foreignKey: { name: "idMembresia", allowNull: false } });
+pagos.belongsTo(membresias, { foreignKey: { name: "idMembresia", allowNull: false } });
+
+// socios 1 ── N asistencias
+socios.hasMany(asistencias, { foreignKey: { name: "idSocio", allowNull: false } });
+asistencias.belongsTo(socios, { foreignKey: { name: "idSocio", allowNull: false } });
+
+// entrenamientos 1 ── N asistencias
+entrenamientos.hasMany(asistencias, { foreignKey: { name: "idTipoEntrenamiento", allowNull: false } });
+asistencias.belongsTo(entrenamientos, { foreignKey: { name: "idTipoEntrenamiento", allowNull: false } });
+
+// entrenamientos 1 ── N clases
+entrenamientos.hasMany(clases, { foreignKey: { name: "idTipoEntrenamiento", allowNull: false } });
+clases.belongsTo(entrenamientos, { foreignKey: { name: "idTipoEntrenamiento", allowNull: false } });
+
+// profesores 1 ── N clases
+profesores.hasMany(clases, { foreignKey: { name: "idProfesor", allowNull: false } });
+clases.belongsTo(profesores, { foreignKey: { name: "idProfesor", allowNull: false } });
+
+// socios 1 ── N rutinas
+socios.hasMany(rutinas, { foreignKey: { name: "idSocio", allowNull: false } });
+rutinas.belongsTo(socios, { foreignKey: { name: "idSocio", allowNull: false } });
+
+// profesores 1 ── N rutinas
+profesores.hasMany(rutinas, { foreignKey: { name: "idProfesor", allowNull: false } });
+rutinas.belongsTo(profesores, { foreignKey: { name: "idProfesor", allowNull: false } });
+
+// rutinas 1 ── N rutinasejercicios
+rutinas.hasMany(rutinasejercicios, { foreignKey: { name: "idRutina", allowNull: false } });
+rutinasejercicios.belongsTo(rutinas, { foreignKey: { name: "idRutina", allowNull: false } });
+
+// ejercicios 1 ── N rutinasejercicios
+ejercicios.hasMany(rutinasejercicios, { foreignKey: { name: "idEjercicio", allowNull: false } });
+rutinasejercicios.belongsTo(ejercicios, { foreignKey: { name: "idEjercicio", allowNull: false } });
