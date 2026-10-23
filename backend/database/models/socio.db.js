@@ -50,4 +50,4 @@ const Socio = databaseManager.define("socios", {
         type: Sequelize.BOOLEAN
     }
 });
-module.exports = Plan;
+module.exports = Socio;
