@@ -19,4 +19,4 @@ const Usuario = databaseManager.define("usuarios", {
         allowNull: false
     }
 });
-module.exports = RutinaEjercicio;
+module.exports = Usuario;
