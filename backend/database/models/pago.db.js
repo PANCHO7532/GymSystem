@@ -1,0 +1,40 @@
+const Sequelize = require("sequelize");
+const databaseManager = require("../index");
+
+const Pago = databaseManager.define("pagos", {
+    "id": {
+        type: Sequelize.INTEGER,
+        primaryKey: true
+    },
+    "monto": {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+    },
+    "medioPago": {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    "fechaPago": {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
+    "periodoMes": {
+        type: Sequelize.STRING,
+        allowNull: false,
+        length: 2
+    },
+    "periodoAnio": {
+        type: Sequelize.STRING,
+        allowNull: false,
+        length: 4
+    },
+    "confirmado": {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+    },
+    "observaciones": {
+        type: Sequelize.STRING,
+        allowNull: true
+    }
+});
+module.exports = Pago;
