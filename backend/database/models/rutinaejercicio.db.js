@@ -23,4 +23,4 @@ const RutinaEjercicio = databaseManager.define("rutinasejercicios", {
         allowNull: false
     }
 });
-module.exports = Membresia;
+module.exports = RutinaEjercicio;
