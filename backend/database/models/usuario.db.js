@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Usuario = databaseManager.define("usuarios", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "email": {
         type: Sequelize.STRING,
