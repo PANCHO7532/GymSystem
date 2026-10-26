@@ -1,7 +1,9 @@
 {
     "server": {
         "listenPort": 7158,
-        "listenHost": "::"
+        "listenHost": "::",
+        "jwtSecretKey": "gymSystemSampleKey0000",
+        "jwtExpiration": "1h"
     },
     "database": {
         "mysqlHost": "127.0.0.1",
