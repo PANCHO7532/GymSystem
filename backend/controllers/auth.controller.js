@@ -23,7 +23,3 @@ module.exports.login = async function(req, res, next) {
     await res.code(200).send({email, token, "rol": userQuery.rol, "expira": new Date(Date.now()+require("ms")(serverConfiguration.jwtExpiration))})
     return;
 }
-
-module.exports.register = async function(req, res, next) {
-    
-}
