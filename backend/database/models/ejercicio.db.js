@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Ejercicio = databaseManager.define("ejercicios", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "nombre": {
         type: Sequelize.STRING,

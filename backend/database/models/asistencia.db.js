@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Asistencia = databaseManager.define("asistencias", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "fecha": {
         type: Sequelize.DATE,

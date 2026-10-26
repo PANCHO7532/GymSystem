@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Membresia = databaseManager.define("membresias", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "fechaInicio": {
         type: Sequelize.STRING,

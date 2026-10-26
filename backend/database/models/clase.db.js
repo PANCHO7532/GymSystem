@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Clase = databaseManager.define("clases", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "diaSemana": {
         type: Sequelize.STRING,

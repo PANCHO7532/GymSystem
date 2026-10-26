@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Pago = databaseManager.define("pagos", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "monto": {
         type: Sequelize.DECIMAL,

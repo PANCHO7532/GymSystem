@@ -4,7 +4,8 @@ const databaseManager = require("../index");
 const Socio = databaseManager.define("socios", {
     "id": {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     "apellido": {
         type: Sequelize.STRING,
