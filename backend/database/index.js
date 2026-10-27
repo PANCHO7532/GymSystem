@@ -42,13 +42,35 @@ const {
     rutinasejercicios
 } = sequelizeInstance.models;
 
+module.exports.populateWithSampleData = async function() {
+    // crear planes de prueba
+    for(let a = 0; a < 4; a++) {
+        await planes.create({nombre: "Plan " + (a+1), precioMensual: 1000 * (a+1), activo: (a % 2) ? false : true});
+    }
+    // crear socios de prueba
+    for(let b = 0; b < 4; b++) {
+        await socios.create({
+            apellido: "Apellido " + (b+1),
+            nombre: "Nombre " + (b+1),
+            dni: Math.round(Math.random()*100000000).toString(),
+            telefono: Math.round(Math.random()*10000000000).toString(),
+            email: "apellidonombre" + (b+1) + "@example.net",
+            direccion: "Avenida Generica C" + (b+1) + ", Santa Maria, Catamarca, Argentina",
+            fechaNacimiento: "2000-01-01",
+            fechaAlta: Date.now(),
+            fotoUrl: "https://wallpapers.com/images/high/blank-default-pfp-wue0zko1dfxs9z2c.jpg",
+            activo: (b % 2) ? false : true
+        });
+    }
+}
+
 // socios 1 ── N membresias
 socios.hasMany(membresias, { foreignKey: { name: "idSocio", allowNull: false } });
-membresias.belongsTo(socios, { foreignKey: { name: "idSocio", allowNull: false } });
+membresias.belongsTo(socios, { as: "socio", foreignKey: { name: "idSocio", allowNull: false } });
 
 // planes 1 ── N membresias
 planes.hasMany(membresias, { foreignKey: { name: "idPlan", allowNull: false } });
-membresias.belongsTo(planes, { foreignKey: { name: "idPlan", allowNull: false } });
+membresias.belongsTo(planes, { as: "plan", foreignKey: { name: "idPlan", allowNull: false } });
 
 // membresias 1 ── N pagos
 membresias.hasMany(pagos, { foreignKey: { name: "idMembresia", allowNull: false } });

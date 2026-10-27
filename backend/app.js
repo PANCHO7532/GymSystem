@@ -45,7 +45,7 @@ fastify.listen({port: configFile.listenPort, host: configFile.listenHost}, async
         });
     } catch(e) { console.log(`[ERROR] Couldn't sync database! ${e}`); }
     if(isDevelopment()) {
-        //database.populateWithSampleData();
+        database.populateWithSampleData();
     }
 });
 module.exports = fastify;
