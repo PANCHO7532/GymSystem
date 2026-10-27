@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const databaseManager = require("../index");
 
 const RutinaEjercicio = databaseManager.define("rutinasejercicios", {
-    "id": {
+    "idRutinaEjercicio": {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
