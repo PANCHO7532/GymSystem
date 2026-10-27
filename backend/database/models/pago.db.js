@@ -31,7 +31,8 @@ const Pago = databaseManager.define("pagos", {
     },
     "confirmado": {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     },
     "observaciones": {
         type: Sequelize.STRING,

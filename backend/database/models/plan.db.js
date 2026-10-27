@@ -16,7 +16,8 @@ const Plan = databaseManager.define("planes", {
         allowNull: false
     },
     "activo": {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
     }
 });
 module.exports = Plan;

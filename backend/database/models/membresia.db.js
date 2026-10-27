@@ -17,7 +17,8 @@ const Membresia = databaseManager.define("membresias", {
     },
     "activo": {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
     }
 });
 module.exports = Membresia;

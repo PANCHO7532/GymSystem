@@ -21,7 +21,8 @@ const Asistencia = databaseManager.define("asistencias", {
     },
     "activo": {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
     }
 });
 module.exports = Asistencia;

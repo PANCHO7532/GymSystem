@@ -25,7 +25,8 @@ const Ejercicio = databaseManager.define("ejercicios", {
     },
     "estado": {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
     }
 });
 module.exports = Ejercicio;
