@@ -3,6 +3,7 @@ const sociosDatabase = require("../database/models/socio.db");
 module.exports.getSocios = async function(req, res, next) {
     const socios = await sociosDatabase.findAll();
     await res.code(200).send(socios);
+    return;
 };
 
 module.exports.postSocios = async function(req, res, next) {
@@ -18,7 +19,7 @@ module.exports.postSocios = async function(req, res, next) {
     } = req.body;
     await sociosDatabase.create({apellido, nombre, dni, telefono, email, direccion, fechaNacimiento, fotoUrl, fechaAlta: Date.now()});
     await res.code(200).send();
-    return
+    return;
 };
 
 module.exports.putSocios = async function(req, res, next) {
