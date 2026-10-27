@@ -43,23 +43,20 @@ const {
 } = sequelizeInstance.models;
 
 module.exports.populateWithSampleData = async function() {
-    // crear planes de prueba
+    // crear datos de prueba
     for(let a = 0; a < 4; a++) {
         await planes.create({nombre: "Plan " + (a+1), precioMensual: 1000 * (a+1), activo: (a % 2) ? false : true});
-    }
-    // crear socios de prueba
-    for(let b = 0; b < 4; b++) {
         await socios.create({
-            apellido: "Apellido " + (b+1),
-            nombre: "Nombre " + (b+1),
+            apellido: "Apellido " + (a+1),
+            nombre: "Nombre " + (a+1),
             dni: Math.round(Math.random()*100000000).toString(),
             telefono: Math.round(Math.random()*10000000000).toString(),
-            email: "apellidonombre" + (b+1) + "@example.net",
-            direccion: "Avenida Generica C" + (b+1) + ", Santa Maria, Catamarca, Argentina",
+            email: "apellidonombre" + (a+1) + "@example.net",
+            direccion: "Avenida Generica C" + (a+1) + ", Santa Maria, Catamarca, Argentina",
             fechaNacimiento: "2000-01-01",
             fechaAlta: Date.now(),
             fotoUrl: "https://wallpapers.com/images/high/blank-default-pfp-wue0zko1dfxs9z2c.jpg",
-            activo: (b % 2) ? false : true
+            activo: (a % 2) ? false : true
         });
     }
 }
