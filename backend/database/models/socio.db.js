@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const databaseManager = require("../index");
 
 const Socio = databaseManager.define("socios", {
-    "id": {
+    "idSocio": {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -48,7 +48,8 @@ const Socio = databaseManager.define("socios", {
         allowNull: false
     },
     "activo": {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
     }
 });
 module.exports = Socio;
