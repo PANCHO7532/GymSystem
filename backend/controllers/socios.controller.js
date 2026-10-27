@@ -1,4 +1,3 @@
-const serverConfiguration = require("../config.json").server;
 const sociosDatabase = require("../database/models/socio.db");
 
 module.exports.getSocios = async function(req, res, next) {
