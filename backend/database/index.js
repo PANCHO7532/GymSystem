@@ -65,6 +65,14 @@ module.exports.populateWithSampleData = async function() {
             fechaVencimiento: Date.now()+(86400000*Math.round(Math.random()*10)),
             activo: true
         });
+        await profesores.create({
+            nombre: "ProfNombre " + (a+1),
+            apellido: "ProfApellido " + (a+1),
+            activo: (a % 2) ? false : true
+        });
+        await entrenamientos.create({
+            nombre: "EntrenamientoGenerico" + (a+1)
+        });
     }
 }
 
