@@ -8,7 +8,7 @@ const Membresia = databaseManager.define("membresias", {
         autoIncrement: true
     },
     "fechaInicio": {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false
     },
     "fechaVencimiento": {
