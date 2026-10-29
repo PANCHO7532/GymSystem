@@ -58,6 +58,13 @@ module.exports.populateWithSampleData = async function() {
             fotoUrl: "https://wallpapers.com/images/high/blank-default-pfp-wue0zko1dfxs9z2c.jpg",
             activo: (a % 2) ? false : true
         });
+        await membresias.create({
+            idSocio: (a+1),
+            idPlan: (a+1),
+            fechaInicio: Date.now(),
+            fechaVencimiento: Date.now()+(86400000*Math.round(Math.random()*10)),
+            activo: true
+        });
     }
 }
 
