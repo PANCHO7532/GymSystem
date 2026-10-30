@@ -73,6 +73,16 @@ module.exports.populateWithSampleData = async function() {
         await entrenamientos.create({
             nombre: "EntrenamientoGenerico" + (a+1)
         });
+        await pagos.create({
+            idMembresia: (a+1),
+            monto: 1000,
+            medioPago: "Efectivo",
+            fechaPago: Date.now(),
+            periodoMes: (new Date().getMonth()+1).toString().padStart(2, '0'),
+            periodoAnio: new Date().getFullYear(),
+            confirmado: (a % 2) ? false : true,
+            observaciones: "Pago de Ejemplo " + (a+1)
+        })
     }
 }
 
