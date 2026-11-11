@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymSystem — Rentabilidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/rentabilidad.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-menu" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
+      <div class="logo-icon">🏋️</div><span class="logo-text">GYMSYSTEM</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-chip"><div class="user-avatar" id="userAvatar">A</div><div class="user-info"><span class="user-email" id="userEmail">usuario@gym.com</span><span class="user-rol" id="userRol">Admin</span></div></div>
+      <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </header>
+  <aside class="sidebar">
+    <span class="nav-section-title">Principal</span>
+    <a class="nav-item" href="index.html"><span class="nav-icon">▦</span> Dashboard</a>
+    <span class="nav-section-title">Gestión</span>
+    <a class="nav-item" href="socios.html"><span class="nav-icon">♙</span> Socios</a>
+    <a class="nav-item" href="membresias.html"><span class="nav-icon">▱</span> Membresías</a>
+    <a class="nav-item" href="pagos.html"><span class="nav-icon">▣</span> Pagos</a>
+    <a class="nav-item" href="asistencias.html"><span class="nav-icon">⊙</span> Asistencias</a>
+    <span class="nav-section-title">Clases</span>
+    <a class="nav-item" href="clases.html"><span class="nav-icon">▢</span> Clases</a>
+    <a class="nav-item" href="rutinas.html"><span class="nav-icon">☷</span> Rutinas</a>
+    <a class="nav-item" href="ejercicios.html"><span class="nav-icon">⌁</span> Ejercicios</a>
+    <span class="nav-section-title">Análisis</span>
+    <a class="nav-item active" href="rentabilidad.html" aria-current="page"><span class="nav-icon">▥</span> Rentabilidad</a>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <main class="main profitability-main">
+    <section class="page-header profitability-header">
+      <div><h1 class="page-title">RENTABILIDAD</h1><p class="page-sub">Análisis de ingresos, costos y gastos del gimnasio</p></div>
+      <div class="header-actions">
+        <button class="btn-secondary" type="button" id="btnCostos" title="La gestión de costos aún no está disponible en la API">◎ &nbsp; COLECTORES DE COSTOS</button>
+        <a class="btn-primary" href="pagos.html">＋ &nbsp; REGISTRAR INGRESO</a>
+      </div>
+    </section>
+
+    <section class="panel filters-panel">
+      <div class="filter-title"><span class="filter-symbol">▽</span> Filtros de análisis</div>
+      <div class="filters-grid">
+        <label class="filter-field"><span>Período</span><select id="periodo" class="filter-select"><option value="month">Mensual</option><option value="quarter">Trimestral</option><option value="year">Anual</option><option value="all">Todo el período</option></select></label>
+        <label class="filter-field"><span>Colector de costos</span><select id="colector" class="filter-select" disabled><option>Todos los colectores (no disponible)</option></select></label>
+        <label class="filter-field"><span>Tipo de movimiento</span><select id="tipoMovimiento" class="filter-select"><option value="all">Ingresos y egresos</option><option value="income">Solo ingresos</option><option value="expense" disabled>Solo egresos (no disponible)</option></select></label>
+        <label class="filter-field month-field" id="mesField"><span>Mes</span><select id="mes" class="filter-select"></select></label>
+        <label class="filter-field year-field"><span>Año</span><select id="anio" class="filter-select"></select></label>
+        <button class="btn-primary filter-apply" id="aplicarFiltros">▽ &nbsp; APLICAR FILTROS</button>
+        <button class="filter-clear" id="limpiarFiltros">↻ &nbsp; LIMPIAR</button>
+      </div>
+    </section>
+
+    <div class="data-note"><span>ⓘ</span><span>Los importes se calculan con los pagos registrados en el sistema. <strong>Los costos y egresos no están disponibles</strong> porque el backend actual no cuenta con endpoints para registrarlos.</span></div>
+
+    <section class="kpi-grid">
+      <article class="kpi-card"><div class="kpi-top"><span>Ingresos totales</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="totalIngresos">—</div><div class="kpi-foot">Ingresos confirmados del período</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Costos y gastos</span><span class="kpi-icon muted-icon">⌁</span></div><div class="kpi-value unavailable" id="totalCostos">No disponible</div><div class="kpi-foot">No existen movimientos de egreso registrados</div></article>
+      <article class="kpi-card result-card"><div class="kpi-top"><span>Resultado económico</span><span class="kpi-icon">▥</span></div><div class="kpi-value unavailable" id="resultadoEconomico">No calculable</div><div class="kpi-foot" id="resultadoNota">Requiere ingresos y costos</div></article>
+      <article class="kpi-card"><div class="kpi-top"><span>Margen de rentabilidad</span><span class="kpi-icon muted-icon">▦</span></div><div class="kpi-value unavailable" id="margenRentabilidad">—</div><div class="kpi-foot">Resultado económico / ingresos × 100</div></article>
+    </section>
+
+    <section class="charts-grid">
+      <article class="panel chart-panel">
+        <div class="panel-heading"><div><h2>Ingresos frente a costos y gastos</h2><p>Comparación del período seleccionado</p></div><span class="period-tag" id="periodoEtiqueta">—</span></div>
+        <div class="bar-chart-wrap"><canvas id="comparacionChart" aria-label="Ingresos confirmados por período"></canvas><div class="chart-message" id="chartMessage" hidden>No hay ingresos confirmados para este período.</div></div>
+        <div class="chart-legend"><span><i class="legend-income"></i> Ingresos confirmados</span><span><i class="legend-cost"></i> Costos no disponibles</span></div>
+      </article>
+      <article class="panel distribution-panel">
+        <div class="panel-heading"><div><h2>Distribución de costos</h2><p>Costos directos e indirectos del período</p></div><span class="link-muted">VER DISTRIBUCIÓN</span></div>
+        <div class="cost-empty"><div class="empty-ring"><span>—</span></div><div class="cost-empty-copy"><strong>Sin datos de costos</strong><p>La API actual no dispone de colectores ni categorías de egresos.</p></div></div>
+        <div class="distribution-foot"><span>ⓘ</span> La distribución estará disponible cuando se incorpore la gestión de costos.</div>
+      </article>
+    </section>
+
+    <section class="panel collector-panel">
+      <div class="panel-heading collector-heading"><div><h2>Rentabilidad por colector de costos</h2><p>Comparación de ingresos y costos asignados por colector</p></div><button class="link-muted" id="btnInfoColectores">GESTIONAR COLECTORES →</button></div>
+      <div class="collector-legend"><span><i class="legend-income"></i> Ingresos</span><span><i class="legend-cost"></i> Costos asignados</span></div>
+      <div class="collector-empty"><span class="empty-icon">◎</span><div><strong>Gestión de colectores no disponible</strong><p>No se encontró un endpoint para crear colectores o asignarles costos. No se muestran ejemplos ficticios.</p></div></div>
+    </section>
+
+    <section class="panel movements-panel">
+      <div class="panel-heading movements-heading"><div><h2>Movimientos del período</h2><p id="movimientosSubtitulo">Pagos registrados en el sistema</p></div><a class="btn-primary" href="pagos.html">＋ &nbsp; REGISTRAR MOVIMIENTO</a></div>
+      <div class="movement-toolbar">
+        <div class="search-wrap"><span class="search-icon">⌕</span><input class="search-input" id="buscarMovimiento" placeholder="Buscar por concepto, socio o plan..." /></div>
+        <select class="filter-select" id="estadoMovimiento"><option value="all">Todos los estados</option><option value="confirmed">Confirmado</option><option value="pending">Pendiente</option></select>
+        <select class="filter-select" id="clasificacionMovimiento"><option value="all">Todas las clasificaciones</option><option value="income">Ingreso</option></select>
+      </div>
+      <div class="table-wrap movement-table-wrap">
+        <table class="movement-table"><thead><tr><th>Fecha</th><th>Concepto</th><th>Tipo</th><th>Categoría</th><th>Clasificación</th><th>Colector</th><th class="right">Importe</th><th>Estado</th><th></th></tr></thead><tbody id="tablaMovimientos"><tr><td colspan="9"><div class="table-loading"><span class="skeleton"></span><span class="skeleton"></span></div></td></tr></tbody></table>
+      </div>
+      <div class="movement-footer" id="movimientosFooter">Los ingresos corresponden a pagos de membresías. Los pagos pendientes no se computan como ingresos.</div>
+    </section>
+    <div class="report-disclaimer">Fuente de datos: <code>GET /api/pagos</code>. Los resultados económicos y márgenes se habilitarán cuando existan endpoints de costos y gastos.</div>
+  </main>
+</div>
+<div class="toast" id="toast"><span id="toastIcon">✅</span><span id="toastMsg"></span></div>
+<script src="../js/auth.js"></script>
+<script src="../js/pages/rentabilidad.js"></script>
+</body>
+</html>
