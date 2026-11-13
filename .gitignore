@@ -137,3 +137,5 @@ private/
 tests/
 # Ignore config.json for backend
 config.json
+# Ignore .zip files (used for code sharing)
+.zip
