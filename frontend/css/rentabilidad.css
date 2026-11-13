@@ -88,3 +88,40 @@
 @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.charts-grid{grid-template-columns:1fr}}
 @media(max-width:767px){.profitability-main{padding:20px 14px;gap:12px}.profitability-header{align-items:flex-start;flex-direction:column}.header-actions{width:100%;flex-wrap:wrap}.filters-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters-grid .filter-apply{grid-column:1}.filters-grid .filter-clear{grid-column:2}.kpi-grid{gap:8px}.kpi-card{padding:12px;min-height:108px}.kpi-value{font-size:23px}.kpi-value.unavailable{font-size:14px}.charts-grid{gap:9px}.movement-toolbar{flex-wrap:wrap}.movement-toolbar .search-wrap{flex-basis:100%;max-width:none}.movement-toolbar .filter-select{flex:1;max-width:none}.movements-heading{align-items:flex-start}.movements-heading .btn-primary{font-size:8px;padding:9px}.panel-heading{padding-left:12px;padding-right:12px}}
 @media(max-width:420px){.filters-grid{grid-template-columns:1fr}.filters-grid .filter-apply,.filters-grid .filter-clear{grid-column:auto}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-top{font-size:9px}.cost-empty{padding-left:12px;gap:12px}.empty-ring{width:85px;height:85px}.movements-heading{flex-direction:column}}
+
+/* Gestión de egresos y colectores */
+.expense-type{color:#e59a82}
+.expense-type:before{background:#e59a82}
+.movement-amount.expense-amount{color:#e59a82!important}
+.distribution-list{width:100%;display:flex;flex-direction:column;gap:10px;padding:4px 0}
+.distribution-row>div:first-child{display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#d5d5df}
+.distribution-row>div:first-child span{color:var(--muted)}
+.distribution-row small{display:block;text-align:right;color:var(--muted);font-size:9px;margin-top:3px}
+.distribution-track{height:5px;border-radius:5px;background:#252630;margin-top:5px;overflow:hidden}
+.distribution-track i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.collector-summary-list{width:100%;display:flex;flex-direction:column;gap:9px;padding:8px 0}
+.collector-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#c9c9d2;font-size:10px}
+.collector-summary-row strong{color:var(--accent);white-space:nowrap}
+.rent-dialog{width:min(560px,calc(100% - 28px));max-height:calc(100% - 32px);padding:0;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:#f4f4f5;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.rent-dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(3px)}
+.rent-dialog-form{display:flex;flex-direction:column;gap:13px;padding:20px}
+.rent-dialog-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.rent-dialog-heading h2{font-size:16px;font-weight:700}
+.rent-dialog-heading p{font-size:10px;color:var(--muted);margin-top:5px}
+.rent-dialog-close{width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:#c9c9d2;font-size:19px;cursor:pointer}
+.rent-dialog-form label{display:flex;flex-direction:column;gap:6px;color:#a4a4b7;font-size:10px}
+.rent-dialog-form input,.rent-dialog-form select{width:100%;min-width:0;padding:10px;border:1px solid var(--border);border-radius:6px;background:var(--surface2);color:#f4f4f5;font:11px 'DM Sans',sans-serif;outline:none}
+.rent-dialog-form input:focus,.rent-dialog-form select:focus{border-color:var(--accent)}
+.rent-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rent-dialog-form .rent-checkbox{display:flex;flex-direction:row;align-items:center;gap:8px}
+.rent-checkbox input{width:auto}
+.rent-dialog-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:6px}
+.rent-dialog-actions button,.rent-inline-form button{font:600 10px 'DM Sans',sans-serif;padding:10px 13px;border-radius:6px;cursor:pointer}
+.rent-inline-form{display:grid;grid-template-columns:1fr 1fr auto;align-items:end;gap:8px}
+.rent-collector-list{display:flex;flex-direction:column;max-height:300px;overflow:auto;border-top:1px solid var(--border)}
+.rent-collector-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 2px;border-bottom:1px solid var(--border)}
+.rent-collector-item>div:first-child{display:flex;flex-direction:column;gap:4px;min-width:0}
+.rent-collector-item strong{font-size:11px;color:#e7e7ed}
+.rent-collector-item small,.rent-empty-list{font-size:9px;color:var(--muted)}
+.rent-empty-list{padding:14px 0}
+@media(max-width:767px){.rent-inline-form{grid-template-columns:1fr}.rent-form-grid{grid-template-columns:1fr}.rent-dialog-form{padding:15px}}
