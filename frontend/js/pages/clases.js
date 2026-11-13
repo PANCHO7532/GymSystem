@@ -4,8 +4,6 @@
  * Dependencias: auth.js (debe cargarse antes)
  */
 
-// Verificar si el token expiró
-  }
 
 
   const DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
