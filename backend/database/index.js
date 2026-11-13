@@ -39,7 +39,9 @@ const {
     asistencias,
     ejercicios,
     rutinas,
-    rutinasejercicios
+    rutinasejercicios,
+    colectoresCostos,
+    egresos
 } = sequelizeInstance.models;
 
 module.exports.populateWithSampleData = async function() {
@@ -85,6 +87,10 @@ module.exports.populateWithSampleData = async function() {
         })
     }
 }
+
+// colectores de costos 1 ── N egresos
+colectoresCostos.hasMany(egresos, { foreignKey: { name: "idColector", allowNull: true }, onDelete: "SET NULL" });
+egresos.belongsTo(colectoresCostos, { as: "colector", foreignKey: { name: "idColector", allowNull: true }, onDelete: "SET NULL" });
 
 // socios 1 ── N membresias
 socios.hasMany(membresias, { foreignKey: { name: "idSocio", allowNull: false } });
