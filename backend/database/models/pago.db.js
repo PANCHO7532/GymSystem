@@ -8,7 +8,7 @@ const Pago = databaseManager.define("pagos", {
         autoIncrement: true
     },
     "monto": {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false
     },
     "medioPago": {

@@ -12,7 +12,7 @@ const Plan = databaseManager.define("planes", {
         allowNull: false
     },
     "precioMensual": {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false
     },
     "activo": {
